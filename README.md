@@ -23,7 +23,9 @@ To connect to Gmail, the developer needs the individual’s “username” and �
 		
     /* Your gmail credentials */
     $username = 'abc@gmail.com';
-    $password = '*****';
+    $password = '*****'; 
+    
+    /* use app password to login to avoid authentication problems. Make sure IMAP enabled in Gmail settings. */
 		
   
   Establish a IMAP connection
