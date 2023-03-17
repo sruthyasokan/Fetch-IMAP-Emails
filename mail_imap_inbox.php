@@ -37,7 +37,8 @@ if ($dbconn->connect_error) {
 	</div>
 	
 	<div class="row" id="dataDivID" style="display:none;"> 
-    <br><?php
+		<br>
+		<?php
 		
 			/* gmail connection,with port number 993 */
 			$hostname = "{imap.gmail.com:993/imap/ssl}INBOX";
