@@ -1,5 +1,5 @@
 <?php 
-$servername = "sg2nlmysql11plsk.secureserver.net:3306";
+$servername = "localhost";
 $username = "testdbmailuser";
 $password = "el3q8Q_3";
 $dbname = "testdbmail";
