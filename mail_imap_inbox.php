@@ -46,8 +46,8 @@ if ($dbconn->connect_error) {
 			//$hostname = '{imap.gmail.com:993/ssl}[Gmail]/Sent Mail';
 			
 			/* Your gmail credentials */
-			$username = 'entwicklerin1@gmail.com';
-			$password = 'hbcatgopxgddvgwd';
+			$username = 'test@gmail.com';
+			$password = '******';//Use app password if using gmail to avoid authentication issues.
 
 			/* Establish a IMAP connection */
 			$conn = imap_open($hostname,$username,$password,NULL,1) or die('Cannot connect : ' . print_r(imap_errors()));
