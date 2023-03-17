@@ -1,6 +1,16 @@
 # Reading-IMAP-Mail-Accounts-and-save-the-data-to-database
 Reading IMAP-Mail Accounts and save the following data in a database
 
+Create database and establish the connection. And create table mailinfo to insert the data to the database.
+	
+	// Create connection
+	$dbconn = new mysqli($servername, $username, $password, $dbname);
+	// Check connection
+	if ($dbconn->connect_error) {
+	  die("Connection failed: " . $dbconn->connect_error);
+	}
+
+
 The following is the HTML and PHP code to list emails from Gmail account. 
 
 To connect to Gmail, the developer needs the individual’s “username” and “password” to be set in the code. 
@@ -52,5 +62,5 @@ So to get the plain text part of the email, we can use “1.1” option as the t
 imap_fetchstructure() used to fetch the attachments from the email.
 
 
-
+Insert all fetched datas to the database.
 
