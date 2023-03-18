@@ -1,4 +1,4 @@
-# Reading-IMAP-Mail-Accounts-and-save-the-data-to-database
+# Reading IMAP Mail Accounts and save data to database
 Reading IMAP-Mail Accounts and save the following data in a database
 
 The following is the HTML and PHP code to list emails from Gmail account and save the following data in a database. 
