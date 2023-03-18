@@ -1,7 +1,7 @@
 <?php 
-$servername = "sg2nlmysql11plsk.secureserver.net:3306";
-$username = "testdbmailuser";
-$password = "el3q8Q_3";
+$servername = "localhost";
+$username = "username";
+$password = "password";
 $dbname = "testdbmail";
 
 // Create connection
