@@ -1,6 +1,9 @@
 # Reading-IMAP-Mail-Accounts-and-save-the-data-to-database
 Reading IMAP-Mail Accounts and save the following data in a database
 
+The following is the HTML and PHP code to list emails from Gmail account and save the following data in a database. 
+
+To connect to Gmail, the developer needs the individual’s “username” and “password” to be set in the code. 
 Create database and establish the connection. And create table mailinfo to insert the data to the database.
 	
 	// Create connection
@@ -9,11 +12,6 @@ Create database and establish the connection. And create table mailinfo to inser
 	if ($dbconn->connect_error) {
 	  die("Connection failed: " . $dbconn->connect_error);
 	}
-
-
-The following is the HTML and PHP code to list emails from Gmail account. 
-
-To connect to Gmail, the developer needs the individual’s “username” and “password” to be set in the code. 
 
     /* gmail connection,with port number 993 */
     $hostname = "{imap.gmail.com:993/imap/ssl}INBOX";
