@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: sg2nlmysql11plsk.secureserver.net:3306
--- Generation Time: Mar 17, 2023 at 01:00 PM
+-- Generation Time: Mar 29, 2023 at 01:57 PM
 -- Server version: 5.7.26-29-log
 -- PHP Version: 7.4.24
 
@@ -28,10 +28,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `mailinfo` (
-  `id` int(11) NOT NULL,
+  `adminid` int(11) NOT NULL,
+  `kundennummer` int(11) NOT NULL,
   `mailtype` varchar(20) NOT NULL,
-  `adr_sender` varchar(250) NOT NULL,
-  `adr_recipient` varchar(250) NOT NULL,
+  `fromaddress` varchar(250) NOT NULL,
+  `toaddress` varchar(250) NOT NULL,
   `subject` text NOT NULL,
   `content` text NOT NULL,
   `filename` varchar(250) NOT NULL,
@@ -46,7 +47,7 @@ CREATE TABLE `mailinfo` (
 -- Indexes for table `mailinfo`
 --
 ALTER TABLE `mailinfo`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`adminid`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -56,7 +57,7 @@ ALTER TABLE `mailinfo`
 -- AUTO_INCREMENT for table `mailinfo`
 --
 ALTER TABLE `mailinfo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `adminid` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
