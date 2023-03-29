@@ -9,18 +9,49 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script>
-	function getEmails() {
-		document.getElementById('inbox').style.display = "block";
-		document.getElementById('sentmail').style.display = "none";
+	function getEmails()
+	{  		
+		if (window.XMLHttpRequest) {
+		// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+		} else { // code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange=function() {
+		
+		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+		// alert(xmlhttp.responseText);
+		document.getElementById("inbox").innerHTML=xmlhttp.responseText;
+		}
+		}										  
+		xmlhttp.open("GET","fetchmail_inbox.php",true);
+		//window.location.href = "fetchmail_inbox.php";
+		xmlhttp.send();
 	}
 	
-	function getsentEmails() {
-		document.getElementById('sentmail').style.display = "block";
-		document.getElementById('inbox').style.display = "none";
+	
+	function getsentEmails()
+	{   		
+		if (window.XMLHttpRequest) {
+		// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+		} else { // code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange=function() {
 		
+		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+		// alert(xmlhttp.responseText);
+		document.getElementById("sentmail").innerHTML=xmlhttp.responseText;
+		}
+		}										  
+		xmlhttp.open("GET","fetchmail_sent.php",true);
+		//window.location.href = "fetchmail_sent.php";
+		xmlhttp.send();
 	}
   </script>
 </head>
+
 <body>
 	<div class="container">  	
 		<div class="row"> 
@@ -31,17 +62,15 @@
 		</div>	
 	
 		<!-----------------------Fetches the emails from inbox----------------------------------->
-		<div class="row" id="inbox" style="display:none;"> <br>
-			<?php include("inc/imap_conn_inbox.php");?>
-			<?php include("fetchmail.php");?>
+		<div class="row" id="inbox" >
+		
 		</div>
 		<!-----------------------Fetches the emails from inbox----------------------------------->
 		
 		
 		<!-----------------------Fetches the emails from Sent----------------------------------->
-		<div class="row" id="sentmail" style="display:none;"><br> 
-			<?php include("inc/imap_conn_sentmail.php");?>
-			<?php include("fetchmail.php");?>
+		<div class="row" id="sentmail" >
+		
 		</div>
 	    <!-----------------------Fetches the emails from Sent----------------------------------->
 	
