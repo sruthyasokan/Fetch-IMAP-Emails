@@ -65,4 +65,9 @@ imap_fetchstructure() used to fetch the attachments from the email.
 
 
 Insert all fetched datas to the database.
+The script only add new mails into the database. If the mail is already in the database it won't be added again.
+If there is only a match for the domain of the email, then just the same customerid is added for new email.
+
+
+
 
