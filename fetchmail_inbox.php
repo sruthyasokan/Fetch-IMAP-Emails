@@ -48,40 +48,40 @@ if ($mails) {
 				
 				
 			//check in databse if the email exists or not. 
-			$sql = "SELECT * FROM mailinfo where fromaddress = '$fromaddress' ";
+			$sql = "SELECT * FROM adminclient where mail = '$fromaddress' ";
 			
 			
 			$result = $dbconn->query($sql);
 			if ($result->num_rows == 0) {
 				
 					//check in databse if the domain exists or not.
-					$sql10 = "SELECT * FROM mailinfo where fromaddress LIKE '%$domain%' ";
+					$sql10 = "SELECT * FROM adminclient where mail LIKE '%$domain%' ";
 					
 					$result10 = $dbconn->query($sql10);
 					if ($result10->num_rows > 0) {
 						$row10 = $result10->fetch_assoc();
 						$kundennummer=$row10["kundennummer"];
+						$adminid="";
 							
 					}else{
-						$sql20 = "SELECT * FROM mailinfo ORDER BY kundennummer DESC";
-						$result20 = $dbconn->query($sql20);
-						if ($result20->num_rows == 0) {
-							$kundennummer=1000;
-						}else{
-						$row20 = $result20->fetch_assoc();
-						$kundennummer=$row20["kundennummer"];
-						$kundennummer=$kundennummer+1;
-						}
+						$kundennummer="";
+						$adminid="";
 					}
+			}else{
+				
+				$result10 = $dbconn->query($sql);
+				$row10 = $result10->fetch_assoc();
+				$kundennummer=$row10["kundennummer"];
+				$adminid=$row10["id"];
+			}
 			
-			
-					$structure = imap_fetchstructure($conn, $email_number); 
-					$finalMessage1=utf8_encode($finalMessage);
+			$structure = imap_fetchstructure($conn, $email_number); 
+			$finalMessage1=utf8_encode($finalMessage);
 							
-					//fetch attachment names
-					$attachments = [];
+			//fetch attachment names
+			$attachments = [];
 
-					foreach ($structure->parts as $part) {
+			foreach ($structure->parts as $part) {
 								$is_attachment = (isset($part->disposition) && $part->disposition == 'ATTACHMENT');
 
 								if ($part->ifdparameters) {
@@ -155,7 +155,7 @@ if ($mails) {
 						
 						
 						//insert datas to database.
-						$sql = "INSERT INTO mailinfo(adminid,kundennummer,mailtype, fromaddress, toaddress,subject,content,filename,date)VALUES('0','$kundennummer','Inbox', '$fromaddress', '$toaddress', '$subject', '$message','$attachmentall','$datee')";
+						$sql = "INSERT INTO mailinfo(mailinfo_id,adminid,kundennummer,mailtype, fromaddress, toaddress,subject,content,filename,date)VALUES('0','$adminid','$kundennummer','Inbox', '$fromaddress', '$toaddress', '$subject', '$message','$attachmentall','$datee')";
 
 						if ($dbconn->query($sql) === TRUE) {
 						// echo "New record created successfully";
@@ -165,9 +165,7 @@ if ($mails) {
 								
 						$attachmentall='';
 						
-			}else{
 			
-			}//check in db records
 				
 		}// End foreach
 				
@@ -180,11 +178,12 @@ if ($mails) {
 	if ($result10->num_rows > 0) { ?><br>
 	<table class="table table-bordered" >
 	<tr>
-		<th colspan=6> Inbox Emails </th>
+		<th colspan=7> Inbox Emails </th>
 	</tr>
 	<tr>
 		<th> Date Time </th>
 		<th> Kundennummer </th>
+		<th> Admin ID </th>
 		<th> From </th>
 		<th> To </th>
 		<th> Subject </th>
@@ -194,6 +193,7 @@ if ($mails) {
 	<?php
 	while($row10 = $result10->fetch_assoc()){
 	$kundennummer=$row10["kundennummer"];
+	$adminid=$row10["adminid"];
 	$fromaddress=$row10["fromaddress"];
 	$toaddress=$row10["toaddress"];
 	$subject=$row10["subject"];
@@ -204,6 +204,7 @@ if ($mails) {
 	<tr>
 		<td><?php echo $date;?></td>
 		<td><?php echo $kundennummer;?></td>
+		<td><?php echo $adminid;?></td>
 		<td><?php echo $fromaddress;?></td>
 		<td><?php echo $toaddress;?></td>
 		<td><?php echo $subject;?></td>
