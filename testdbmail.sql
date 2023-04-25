@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: sg2nlmysql11plsk.secureserver.net:3306
--- Generation Time: Mar 29, 2023 at 01:57 PM
+-- Generation Time: Apr 25, 2023 at 02:21 AM
 -- Server version: 5.7.26-29-log
--- PHP Version: 7.4.24
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,12 +24,35 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `adminclient`
+--
+
+CREATE TABLE `adminclient` (
+  `id` int(11) NOT NULL,
+  `kundennummer` int(11) NOT NULL,
+  `mail` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `adminclient`
+--
+
+INSERT INTO `adminclient` (`id`, `kundennummer`, `mail`) VALUES
+(612, 1047, 'inhausen.webtvcampus.de'),
+(613, 1047, 'jmassmann.webtvcampus.de'),
+(1012, 1047, 'froehlich.webtvcampus.de'),
+(1013, 1035, 'dietril@klinikum-koeln.de');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `mailinfo`
 --
 
 CREATE TABLE `mailinfo` (
-  `adminid` int(11) NOT NULL,
-  `kundennummer` int(11) NOT NULL,
+  `mailinfo_id` int(11) NOT NULL,
+  `adminid` varchar(250) NOT NULL,
+  `kundennummer` varchar(250) NOT NULL,
   `mailtype` varchar(20) NOT NULL,
   `fromaddress` varchar(250) NOT NULL,
   `toaddress` varchar(250) NOT NULL,
@@ -44,20 +67,32 @@ CREATE TABLE `mailinfo` (
 --
 
 --
+-- Indexes for table `adminclient`
+--
+ALTER TABLE `adminclient`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `mailinfo`
 --
 ALTER TABLE `mailinfo`
-  ADD PRIMARY KEY (`adminid`);
+  ADD PRIMARY KEY (`mailinfo_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
+-- AUTO_INCREMENT for table `adminclient`
+--
+ALTER TABLE `adminclient`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1051;
+
+--
 -- AUTO_INCREMENT for table `mailinfo`
 --
 ALTER TABLE `mailinfo`
-  MODIFY `adminid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `mailinfo_id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
